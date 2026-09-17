@@ -1,0 +1,10 @@
+{
+  "description": "Track and manage your diet easily with a user-friendly app designed to monitor food intake and support healthy eating habits.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,1289 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodSaver</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7f2;
+            color: #263326;
+        }
+
+        /* ENCABEZADO */
+
+        header {
+            background: #7aa66d;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .slogan {
+            font-size: 14px;
+        }
+
+
+        /* ESTRUCTURA */
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 75px);
+        }
+
+
+        /* MENÚ */
+
+        aside {
+            width: 230px;
+            background: white;
+            padding: 25px 15px;
+        }
+
+        .menu-title {
+            font-size: 13px;
+            color: #899489;
+            margin: 10px 15px;
+            text-transform: uppercase;
+        }
+
+        .menu-button {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 14px;
+            margin-bottom: 5px;
+            text-align: left;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #405040;
+        }
+
+        .menu-button:hover {
+            background: #edf5ea;
+        }
+
+        .menu-button.active {
+            background: #dcebd7;
+            color: #4d7d42;
+            font-weight: bold;
+        }
+
+
+        /* CONTENIDO */
+
+        main {
+            flex: 1;
+            padding: 35px;
+            max-width: 1200px;
+            margin: auto;
+            width: 100%;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            color: #304b30;
+        }
+
+        .description {
+            color: #718071;
+            margin-bottom: 25px;
+        }
+
+
+        /* TARJETAS */
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            color: #7b877b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .card-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #304b30;
+        }
+
+
+        /* FORMULARIO */
+
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 650px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #536153;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d8ded6;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .primary-button {
+            background: #7aa66d;
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .primary-button:hover {
+            background: #668f5c;
+        }
+
+
+        /* TABLA */
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #edf3ea;
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+            color: #536153;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #edf0ec;
+        }
+
+
+        /* ESTADOS */
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .urgent {
+            background: #f9dddd;
+            color: #a53f3f;
+        }
+
+        .soon {
+            background: #fff0cc;
+            color: #9a7018;
+        }
+
+        .normal {
+            background: #dcefd9;
+            color: #4d7d42;
+        }
+
+
+        /* BOTONES DE ACCIÓN */
+
+        .action-button {
+            border: none;
+            padding: 8px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 2px;
+        }
+
+        .eat-button {
+            background: #dcefd9;
+            color: #4d7d42;
+        }
+
+        .delete-button {
+            background: #f9dddd;
+            color: #a53f3f;
+        }
+
+
+        /* SUGERENCIAS */
+
+        .recipe {
+            background: white;
+            border-radius: 15px;
+            padding: 22px;
+            margin-bottom: 15px;
+        }
+
+        .recipe h3 {
+            color: #4d7d42;
+            margin-bottom: 10px;
+        }
+
+        .recipe p {
+            color: #667066;
+            line-height: 1.5;
+        }
+
+        .recipe-tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 10px;
+            background: #edf5ea;
+            color: #4d7d42;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .empty {
+            padding: 35px;
+            text-align: center;
+            color: #899489;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .container {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+            }
+
+            .menu-title {
+                display: none;
+            }
+
+            .menu-button {
+                min-width: 150px;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div>
+
+        <div class="logo">
+            FoodSaver
+        </div>
+
+        <div class="slogan">
+            Come primero, desperdicia menos.
+        </div>
+
+    </div>
+
+    <div>
+        🌱
+    </div>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- MENÚ -->
+
+    <aside>
+
+        <div class="menu-title">
+            Menú principal
+        </div>
+
+
+        <button
+            class="menu-button active"
+            onclick="mostrarSeccion('inicio', this)"
+        >
+            🏠 Inicio
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="mostrarSeccion('agregar', this)"
+        >
+            ➕ Agregar alimento
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="mostrarSeccion('despensa', this)"
+        >
+            🥕 Mi despensa
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="mostrarSeccion('urgentes', this)"
+        >
+            ⚠️ Alimentos urgentes
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="mostrarSeccion('sugerencias', this)"
+        >
+            🍳 Sugerencias
+        </button>
+
+    </aside>
+
+
+    <main>
+
+
+        <!-- INICIO -->
+
+        <section id="inicio" class="section active">
+
+            <h1>
+                Bienvenido a FoodSaver
+            </h1>
+
+            <p class="description">
+                Administra tus alimentos y evita desperdiciarlos.
+            </p>
+
+
+            <div class="dashboard">
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🥕
+                    </div>
+
+                    <div class="card-title">
+                        Alimentos registrados
+                    </div>
+
+                    <div
+                        class="card-number"
+                        id="totalAlimentos"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        ⚠️
+                    </div>
+
+                    <div class="card-title">
+                        Alimentos urgentes
+                    </div>
+
+                    <div
+                        class="card-number"
+                        id="totalUrgentes"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    ¿Cómo funciona FoodSaver?
+                </h2>
+
+                <br>
+
+                <p>
+                    1. Registra los alimentos que tienes en casa.
+                </p>
+
+                <br>
+
+                <p>
+                    2. FoodSaver identifica cuáles están próximos a caducar.
+                </p>
+
+                <br>
+
+                <p>
+                    3. Consulta las sugerencias para aprovecharlos.
+                </p>
+
+                <br>
+
+                <p>
+                    4. Cuando consumas un alimento, márcalo como "Comido".
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- AGREGAR -->
+
+        <section id="agregar" class="section">
+
+            <h1>
+                Agregar alimento
+            </h1>
+
+            <p class="description">
+                Registra un nuevo alimento en tu despensa.
+            </p>
+
+
+            <div class="form-container">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Nombre del alimento
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        placeholder="Ej. Leche"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Categoría
+                    </label>
+
+                    <select id="categoria">
+
+                        <option value="Lácteos">
+                            Lácteos
+                        </option>
+
+                        <option value="Frutas">
+                            Frutas
+                        </option>
+
+                        <option value="Verduras">
+                            Verduras
+                        </option>
+
+                        <option value="Carnes">
+                            Carnes
+                        </option>
+
+                        <option value="Granos">
+                            Granos
+                        </option>
+
+                        <option value="Otros">
+                            Otros
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Cantidad
+                    </label>
+
+                    <input
+                        type="number"
+                        id="cantidad"
+                        min="1"
+                        placeholder="Ej. 2"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Días para caducar
+                    </label>
+
+                    <input
+                        type="number"
+                        id="dias"
+                        min="0"
+                        placeholder="Ej. 5"
+                    >
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="agregarAlimento()"
+                >
+                    Guardar alimento
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DESPENSA -->
+
+        <section id="despensa" class="section">
+
+            <h1>
+                Mi despensa
+            </h1>
+
+            <p class="description">
+                Consulta y administra tus alimentos.
+            </p>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Alimento
+                            </th>
+
+                            <th>
+                                Categoría
+                            </th>
+
+                            <th>
+                                Cantidad
+                            </th>
+
+                            <th>
+                                Caducidad
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th>
+                                Acción
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tablaAlimentos">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- URGENTES -->
+
+        <section id="urgentes" class="section">
+
+            <h1>
+                Alimentos urgentes
+            </h1>
+
+            <p class="description">
+                Estos alimentos deberían consumirse primero.
+            </p>
+
+
+            <div id="listaUrgentes">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SUGERENCIAS -->
+
+        <section id="sugerencias" class="section">
+
+            <h1>
+                Sugerencias de comida
+            </h1>
+
+            <p class="description">
+                Ideas para aprovechar los alimentos que tienes.
+            </p>
+
+
+            <div id="listaRecetas">
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+
+    // Lista donde se guardan los alimentos
+
+    let alimentos = [];
+
+
+
+    // CAMBIAR DE SECCIÓN
+
+    function mostrarSeccion(id, boton) {
+
+        let secciones =
+            document.querySelectorAll(".section");
+
+        secciones.forEach(function(seccion) {
+
+            seccion.classList.remove("active");
+
+        });
+
+
+        document.getElementById(id)
+            .classList.add("active");
+
+
+        let botones =
+            document.querySelectorAll(".menu-button");
+
+        botones.forEach(function(boton) {
+
+            boton.classList.remove("active");
+
+        });
+
+
+        boton.classList.add("active");
+
+
+        actualizarInterfaz();
+
+    }
+
+
+
+    // AGREGAR ALIMENTO
+
+    function agregarAlimento() {
+
+        let nombre =
+            document.getElementById("nombre").value;
+
+        let categoria =
+            document.getElementById("categoria").value;
+
+        let cantidad =
+            document.getElementById("cantidad").value;
+
+        let dias =
+            document.getElementById("dias").value;
+
+
+        if (
+            nombre === "" ||
+            cantidad === "" ||
+            dias === ""
+        ) {
+
+            alert("Completa todos los campos.");
+
+            return;
+
+        }
+
+
+        let alimento = {
+
+            nombre: nombre,
+
+            categoria: categoria,
+
+            cantidad: Number(cantidad),
+
+            dias: Number(dias)
+
+        };
+
+
+        alimentos.push(alimento);
+
+
+        document.getElementById("nombre").value = "";
+
+        document.getElementById("cantidad").value = "";
+
+        document.getElementById("dias").value = "";
+
+
+        alert("Alimento agregado correctamente.");
+
+
+        actualizarInterfaz();
+
+    }
+
+
+
+    // DETERMINAR ESTADO
+
+    function obtenerEstado(dias) {
+
+        if (dias <= 2) {
+
+            return {
+                texto: "URGENTE",
+                clase: "urgent"
+            };
+
+        }
+
+
+        if (dias <= 5) {
+
+            return {
+                texto: "PRÓXIMO",
+                clase: "soon"
+            };
+
+        }
+
+
+        return {
+            texto: "NORMAL",
+            clase: "normal"
+        };
+
+    }
+
+
+
+    // MOSTRAR DESPENSA
+
+    function actualizarTabla() {
+
+        let tabla =
+            document.getElementById("tablaAlimentos");
+
+
+        tabla.innerHTML = "";
+
+
+        if (alimentos.length === 0) {
+
+            tabla.innerHTML = `
+
+                <tr>
+
+                    <td colspan="6" class="empty">
+
+                        No hay alimentos registrados.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        alimentos.forEach(function(alimento, indice) {
+
+            let estado =
+                obtenerEstado(alimento.dias);
+
+
+            tabla.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${alimento.nombre}
+                    </td>
+
+                    <td>
+                        ${alimento.categoria}
+                    </td>
+
+                    <td>
+                        ${alimento.cantidad}
+                    </td>
+
+                    <td>
+                        ${alimento.dias} días
+                    </td>
+
+                    <td>
+
+                        <span class="status ${estado.clase}">
+
+                            ${estado.texto}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="action-button eat-button"
+                            onclick="comerAlimento(${indice})"
+                        >
+                            ✓ Comido
+                        </button>
+
+
+                        <button
+                            class="action-button delete-button"
+                            onclick="eliminarAlimento(${indice})"
+                        >
+                            ✕ Eliminar
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+    }
+
+
+
+    // MARCAR ALIMENTO COMO COMIDO
+
+    function comerAlimento(indice) {
+
+        let alimento =
+            alimentos[indice];
+
+
+        alert(
+            "¡Excelente! Consumiste " +
+            alimento.nombre +
+            "."
+        );
+
+
+        alimentos.splice(indice, 1);
+
+
+        actualizarInterfaz();
+
+    }
+
+
+
+    // ELIMINAR ALIMENTO
+
+    function eliminarAlimento(indice) {
+
+        let alimento =
+            alimentos[indice];
+
+
+        let confirmar =
+            confirm(
+                "¿Quieres eliminar " +
+                alimento.nombre +
+                " de tu despensa?"
+            );
+
+
+        if (confirmar) {
+
+            alimentos.splice(indice, 1);
+
+            actualizarInterfaz();
+
+        }
+
+    }
+
+
+
+    // ALIMENTOS URGENTES
+
+    function actualizarUrgentes() {
+
+        let contenedor =
+            document.getElementById("listaUrgentes");
+
+
+        let urgentes =
+            alimentos.filter(function(alimento) {
+
+                return alimento.dias <= 5;
+
+            });
+
+
+        if (urgentes.length === 0) {
+
+            contenedor.innerHTML = `
+
+                <div class="card">
+
+                    <div class="empty">
+
+                        No tienes alimentos urgentes.
+
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        contenedor.innerHTML = "";
+
+
+        urgentes.forEach(function(alimento) {
+
+            let estado =
+                obtenerEstado(alimento.dias);
+
+
+            contenedor.innerHTML += `
+
+                <div class="recipe">
+
+                    <h3>
+                        ⚠️ ${alimento.nombre}
+                    </h3>
+
+                    <p>
+
+                        Caduca en
+                        <strong>
+                            ${alimento.dias} días
+                        </strong>.
+
+                    </p>
+
+                    <span class="recipe-tag">
+
+                        ${estado.texto}
+
+                    </span>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+
+    // SUGERENCIAS
+
+    function actualizarRecetas() {
+
+        let contenedor =
+            document.getElementById("listaRecetas");
+
+
+        let nombres =
+            alimentos.map(function(alimento) {
+
+                return alimento.nombre.toLowerCase();
+
+            });
+
+
+        let recetas = [];
+
+
+        if (
+            nombres.includes("leche") &&
+            nombres.includes("tomate")
+        ) {
+
+            recetas.push({
+
+                nombre: "Crema de tomate",
+
+                descripcion:
+                    "Utiliza leche y tomate para preparar una crema sencilla."
+
+            });
+
+        }
+
+
+        if (
+            nombres.includes("huevo") &&
+            nombres.includes("tomate") &&
+            nombres.includes("queso")
+        ) {
+
+            recetas.push({
+
+                nombre: "Omelette de tomate y queso",
+
+                descripcion:
+                    "Combina huevo, tomate y queso para aprovechar varios ingredientes."
+
+            });
+
+        }
+
+
+        if (
+            nombres.includes("tortilla") &&
+            nombres.includes("queso")
+        ) {
+
+            recetas.push({
+
+                nombre: "Quesadillas",
+
+                descripcion:
+                    "Una opción sencilla para aprovechar tortillas y queso."
+
+            });
+
+        }
+
+
+        if (recetas.length === 0) {
+
+            contenedor.innerHTML = `
+
+                <div class="card">
+
+                    <div class="empty">
+
+                        Aún no tenemos una receta
+                        basada en tus alimentos.
+
+                        <br><br>
+
+                        Agrega leche, tomate,
+                        huevo, queso o tortilla.
+
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        contenedor.innerHTML = "";
+
+
+        recetas.forEach(function(receta) {
+
+            contenedor.innerHTML += `
+
+                <div class="recipe">
+
+                    <h3>
+                        🍳 ${receta.nombre}
+                    </h3>
+
+                    <p>
+                        ${receta.descripcion}
+                    </p>
+
+                    <span class="recipe-tag">
+                        FoodSaver recomienda esta opción
+                    </span>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+
+    // ACTUALIZAR CONTADORES
+
+    function actualizarDashboard() {
+
+        let urgentes =
+            alimentos.filter(function(alimento) {
+
+                return alimento.dias <= 2;
+
+            });
+
+
+        document.getElementById("totalAlimentos")
+            .innerText = alimentos.length;
+
+
+        document.getElementById("totalUrgentes")
+            .innerText = urgentes.length;
+
+    }
+
+
+
+    // ACTUALIZAR TODA LA INTERFAZ
+
+    function actualizarInterfaz() {
+
+        actualizarDashboard();
+
+        actualizarTabla();
+
+        actualizarUrgentes();
+
+        actualizarRecetas();
+
+    }
+
+
+    // CARGAR LA INTERFAZ AL INICIAR
+
+    actualizarInterfaz();
+
+</script>
+
+
+</body>
+
+</html>
+```
